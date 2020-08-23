@@ -111,8 +111,6 @@
                 				
                 <buildCommand>make</buildCommand>
                 				
-                <buildArguments/>
-                				
                 <buildTarget>all</buildTarget>
                 				
                 <stopOnError>true</stopOnError>
@@ -127,9 +125,23 @@
                 				
                 <buildCommand>make</buildCommand>
                 				
+                <buildTarget>clean</buildTarget>
+                				
+                <stopOnError>true</stopOnError>
+                				
+                <useDefaultCommand>true</useDefaultCommand>
+                				
+                <runAllBuilders>true</runAllBuilders>
+                			
+            </target>
+            			
+            <target name="installSymbolic" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+                				
+                <buildCommand>make</buildCommand>
+                				
                 <buildArguments/>
                 				
-                <buildTarget>clean</buildTarget>
+                <buildTarget>installSymbolic</buildTarget>
                 				
                 <stopOnError>true</stopOnError>
                 				
