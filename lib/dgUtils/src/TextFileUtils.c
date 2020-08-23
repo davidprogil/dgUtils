@@ -37,7 +37,7 @@ void DGUF_Init(DGUF_TextFileUtils_t *this)
 
 bool_t DGUF_ReadLine(FILE *fh,char *output,uint16_t *outputLenght, uint16_t maxOutputLength)
 {
-	bool_t isEndOfFile=DG_FALSE;
+	bool_t isEndOfFile=M_FALSE;
 	uint16_t outIx=0;
 
 	char c=0;
@@ -46,7 +46,7 @@ bool_t DGUF_ReadLine(FILE *fh,char *output,uint16_t *outputLenght, uint16_t maxO
 		c=getc(fh);
 		if (EOF==c)
 		{
-			isEndOfFile=DG_TRUE;
+			isEndOfFile=M_TRUE;
 		}
 		else if ('\n'!=c)
 		{

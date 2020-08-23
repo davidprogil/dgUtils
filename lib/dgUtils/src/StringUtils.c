@@ -32,7 +32,7 @@
 /* public functions -----------------------------------------------------------*/
 bool_t DGUS_GetStringToChar(char *output,char *input,char find,uint16_t maxSize)
 {
-	bool_t isError = DG_TRUE;
+	bool_t isError = M_TRUE;
 	uint16_t srcIx=0;
 	char c=0;
 
@@ -47,7 +47,7 @@ bool_t DGUS_GetStringToChar(char *output,char *input,char find,uint16_t maxSize)
 		else
 		{
 			output[srcIx]=0;
-			isError = DG_FALSE;
+			isError = M_FALSE;
 			break;
 		}
 
@@ -57,7 +57,7 @@ bool_t DGUS_GetStringToChar(char *output,char *input,char find,uint16_t maxSize)
 	if (srcIx==maxSize)
 	{
 		//printf("DGUS_GetStringToChar max size reached\n");//DEBUG
-		isError = DG_TRUE;
+		isError = M_TRUE;
 	}
 
 	return isError;
@@ -65,7 +65,7 @@ bool_t DGUS_GetStringToChar(char *output,char *input,char find,uint16_t maxSize)
 
 bool_t DGUS_GetStringAfterChar(char *output,char *input,char find,uint16_t maxSize)
 {
-	bool_t isError = DG_TRUE;
+	bool_t isError = M_TRUE;
 	uint16_t srcIx=0;
 	uint16_t trgIx=0;
 	char c=0;
@@ -74,12 +74,12 @@ bool_t DGUS_GetStringAfterChar(char *output,char *input,char find,uint16_t maxSi
 	{
 		c=input[srcIx];
 		//printf("%c%c",find,c);//DEBUG
-		if ((c==find) && (DG_TRUE == isError))
+		if ((c==find) && (M_TRUE == isError))
 		{
 			//printf("F");//DEBUG
-			isError = DG_FALSE;
+			isError = M_FALSE;
 		}
-		else if (DG_FALSE == isError)
+		else if (M_FALSE == isError)
 		{
 			output[trgIx++]=c;
 		}
@@ -92,11 +92,11 @@ bool_t DGUS_GetStringAfterChar(char *output,char *input,char find,uint16_t maxSi
 
 bool_t DGUS_GetStringBetweenChars(char *output,char *input,char find,uint16_t maxSize)
 {
-	bool_t isError = DG_FALSE;
+	bool_t isError = M_FALSE;
 
 	isError=DGUS_GetStringAfterChar(output,input,find,maxSize);
 
-	if (DG_FALSE==isError)
+	if (M_FALSE==isError)
 	{
 		isError=DGUS_GetStringToChar(output,output,find,maxSize);
 	}
