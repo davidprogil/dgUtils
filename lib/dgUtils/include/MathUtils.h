@@ -25,6 +25,14 @@ typedef struct _DGUH_MathUtils_t_
 
 }DGUH_MathUtils_t;
 
+typedef struct _DGUH_Float32MovingAverage_t_
+{
+	float32_t sum;
+	float32_t average;
+	uint16_t  samplesNb;
+	uint16_t  samplesNbMax;
+}DGUH_Float32MovingAverage_t;
+
 /* public variables-------------------------------------------------------------*/
 /* none */
 
@@ -32,6 +40,9 @@ typedef struct _DGUH_MathUtils_t_
 void DGUH_Init(DGUH_MathUtils_t *this);
 void DGUH_Execute(DGUH_MathUtils_t *this);
 
+//DGUH_Float32MovingAverage_t
+void DGUH_Init_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,uint16_t samplesNbMax);
+float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,float32_t newSample);
 
 /* end */
 #endif /* DGUH_MathUtils_H */
