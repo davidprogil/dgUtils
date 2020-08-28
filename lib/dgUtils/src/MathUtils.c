@@ -7,6 +7,7 @@
 /* system includes-------------------------------------------------------------*/
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 /* application includes--------------------------------------------------------*/
 #include <MathUtils.h>
@@ -58,6 +59,12 @@ float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *thi
 		this->sum-=this->average;
 	}
 	return this->average;
+}
+
+float32_t DGUH_Error(float32_t one,float32_t two)
+{
+	float32_t dif=one-two;
+	return sqrt(dif*dif);
 }
 
 /* local functions ------------------------------------------------------------*/
