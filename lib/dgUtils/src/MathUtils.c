@@ -66,7 +66,13 @@ float32_t DGUH_Error(float32_t one,float32_t two)
 	float32_t dif=one-two;
 	return sqrt(dif*dif);
 }
-
+float32_t DGUH_sampleNormal(float32_t center,float32_t cov)
+{
+	float32_t drand1=(rand()+1.0)/(RAND_MAX+1.0);
+	float32_t drand2=(rand()+1.0)/(RAND_MAX+1.0);
+	float32_t normal01=sqrt(-2*log(drand1)) * cos(2*M_PI*drand2);
+	return center+sqrt(cov)*normal01;
+}
 /* local functions ------------------------------------------------------------*/
 /* none */
 
