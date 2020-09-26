@@ -45,6 +45,9 @@ void DGUH_Init_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,uint16_t s
 float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,float32_t newSample);
 float32_t DGUH_Error(float32_t one,float32_t two);
 float32_t DGUH_sampleNormal(float32_t center,float32_t cov);
+bool_t DGUH_uint16_isOdd(uint16_t input);
+
+
 /* end */
 #endif /* DGUH_MathUtils_H */
 
