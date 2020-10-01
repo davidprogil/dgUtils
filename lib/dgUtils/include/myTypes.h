@@ -20,7 +20,8 @@
 #define M_TRUE (1)
 
 #define DGL_DEG2RAD(x) ((x)*3.1415f/180.0f)
-
+#define FLOAT32_MIN (-1.175494350e-38)
+#define FLOAT32_MAX (3.40282346e+38)
 /* types------------------------------------------------------------------------*/
 typedef int8_t bool_t;
 typedef unsigned char uint8_t;

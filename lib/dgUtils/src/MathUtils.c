@@ -79,6 +79,17 @@ bool_t DGUH_uint16_isOdd(uint16_t input)
 	if (input%2==0) returnValue=M_FALSE;
 	return returnValue;
 }
+
+float32_t DGUH_Float32_Min(float32_t one,float32_t two)
+{
+	if (one<two) return one;
+	else return two;
+}
+float32_t DGUH_Float32_Max(float32_t one,float32_t two)
+{
+	if (one>two) return one;
+		else return two;
+}
 /* local functions ------------------------------------------------------------*/
 /* none */
 
