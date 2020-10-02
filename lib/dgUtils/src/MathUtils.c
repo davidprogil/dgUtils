@@ -90,6 +90,16 @@ float32_t DGUH_Float32_Max(float32_t one,float32_t two)
 	if (one>two) return one;
 		else return two;
 }
+int16_t DGUH_Int16_Min(int16_t one,int16_t two)
+{
+	if (one<two) return one;
+		else return two;
+}
+int16_t DGUH_Int_Max(int16_t one,int16_t two)
+{
+	if (one>two) return one;
+			else return two;
+}
 /* local functions ------------------------------------------------------------*/
 /* none */
 
