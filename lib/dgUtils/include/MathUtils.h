@@ -17,7 +17,9 @@
 /* none */
 
 /* macros-----------------------------------------------------------------------*/
-/* none */
+#define DGUH_PI (3.14159f)
+#define DGUH_RAD2DEG(x) ((x)/DGUH_PI*180.0f)
+#define DGUH_DEG2RAD(x) ((x)*DGUH_PI/180.0f)
 
 /* types------------------------------------------------------------------------*/
 typedef struct _DGUH_MathUtils_t_
