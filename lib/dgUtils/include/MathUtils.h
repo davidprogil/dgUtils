@@ -21,6 +21,10 @@
 #define DGUH_RAD2DEG(x) ((x)/DGUH_PI*180.0f)
 #define DGUH_DEG2RAD(x) ((x)*DGUH_PI/180.0f)
 
+#define DGUH_FLOAT64_PI (3.1415926535897932384626433832795028841971693993751058209749445923078164062)
+#define DGUH_FLOAT64_RAD2DEG(x) ((x)/DGUH_FLOAT64_PI*180.0)
+#define DGUH_FLOAT64_DEG2RAD(x) ((x)*DGUH_FLOAT64_PI/180.0)
+
 /* types------------------------------------------------------------------------*/
 typedef struct _DGUH_MathUtils_t_
 {
