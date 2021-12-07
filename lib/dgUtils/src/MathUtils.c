@@ -66,6 +66,11 @@ float32_t DGUH_Error(float32_t one,float32_t two)
 	float32_t dif=one-two;
 	return sqrt(dif*dif);
 }
+float64_t DGUH_Error64(float64_t one,float64_t two)
+{
+	float64_t dif=one-two;
+		return sqrt(dif*dif);
+}
 float32_t DGUH_sampleNormal(float32_t center,float32_t cov)
 {
 	float32_t drand1=(rand()+1.0)/(RAND_MAX+1.0);
