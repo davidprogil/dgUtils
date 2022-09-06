@@ -1,5 +1,9 @@
 # dgUtils
-General Utilitaries for Programming from David Gil
+General C Utilitaries for Programming from David Gil:
+- types and associated definitions
+- math: degree, conversion, RMS error, moving average
+- string: search/copy patterns
+- file: read line at once
 
 Environment:
 - developped in Ubuntu 20.04
