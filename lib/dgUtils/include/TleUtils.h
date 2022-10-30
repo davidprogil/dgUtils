@@ -29,7 +29,7 @@ typedef struct _DGUT_SatLatLon_t_
 /* none */
 
 /* public functions--------------------------------------------------------------*/
-bool_t DGUT_ReadAndParseTles(mediumText_t filename);
+bool_t DGUT_ReadAndParseTles(shortText_t filename);
 bool_t DGUT_GetTleId(uint32_t *tleId,shortText_t catalogId);
 bool_t DGUT_GetSatLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t tleId,uint32_t time);
 //get sun lat lon - time TODO

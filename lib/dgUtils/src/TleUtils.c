@@ -59,7 +59,7 @@ VERIN verin_g[DGUT_TLE_MAX_NO];
 TLE	  tle_g[DGUT_TLE_MAX_NO];
 uint32_t tleNo_g;
 /* local prototypes -----------------------------------------------------------*/
-int readVERINs(mediumText_t filename,VERIN *listptr,TLE *tle,uint32_t *tleNo);
+int readVERINs(shortText_t filename,VERIN *listptr,TLE *tle,uint32_t *tleNo);
 double Julian_Date_of_Year(double year);
 double Julian_Date_of_Epoch(double epoch);
 void Calculate_LatLonAlt(double _time, vector_t * pos, geodetic_t * geodetic);
@@ -70,7 +70,7 @@ double AcTan(double sinx, double cosx);
 double Frac(double arg);
 double Modulus(double arg1, double arg2);
 /* public functions -----------------------------------------------------------*/
-bool_t DGUT_ReadAndParseTles(mediumText_t filename)
+bool_t DGUT_ReadAndParseTles(shortText_t filename)
 {
 	bool_t isError=M_FALSE;
 	int32_t readResult;
@@ -79,7 +79,7 @@ bool_t DGUT_ReadAndParseTles(mediumText_t filename)
 
 	if (readResult>0)
 	{
-		//parse
+		//parse done in readVERINs
 	}
 	else
 	{
@@ -177,7 +177,7 @@ bool_t DGUT_GetSatLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t tleId,uint32_t tim
 }
 
 /* local functions ------------------------------------------------------------*/
-int readVERINs(mediumText_t filename,VERIN *listptr,TLE *tle,uint32_t *tleNo)
+int readVERINs(shortText_t filename,VERIN *listptr,TLE *tle,uint32_t *tleNo)
 {
 	char line[256];
 	char *str = NULL;
@@ -188,43 +188,40 @@ int readVERINs(mediumText_t filename,VERIN *listptr,TLE *tle,uint32_t *tleNo)
 
 	in_file = fopen(filename,"r");
 
-	while(fgets(line,255,in_file) != NULL)
-	{
-		if(line[0]=='1')cnt++;
-	}
 
 	if(in_file)
 	{
+		while(fgets(line,255,in_file) != NULL)
+		{
+			if(line[0]=='1')cnt++;
+		}
 		fclose(in_file);
-	}
 
-	verins = listptr;
+		verins = listptr;
 
-	cnt = 0;
-	in_file = fopen(filename,"r");
+		cnt = 0;
+		in_file = fopen(filename,"r");
 
-	while(fgets(line,255,in_file) != NULL)
-	{
-		if(line[0]=='1')
+		while(fgets(line,255,in_file) != NULL)
 		{
-			strncpy(verins[cnt].line1,line,(DGUT_TLE_LINE_NB-1));
-			verins[cnt].line1[(DGUT_TLE_LINE_NB-1)]=0;
-			fgets(line,255,in_file);
-			strncpy(verins[cnt].line2,line,(DGUT_TLE_LINE_NB-1));
-			verins[cnt].line2[(DGUT_TLE_LINE_NB-1)]=0;
-			str = &line[DGUT_TLE_LINE_NB];
-			sscanf(str,"%lf %lf %lf",&verins[cnt].startmin,&verins[cnt].stopmin,&verins[cnt].stepmin);
-			cnt++;
+			if(line[0]=='1')
+			{
+				strncpy(verins[cnt].line1,line,(DGUT_TLE_LINE_NB-1));
+				verins[cnt].line1[(DGUT_TLE_LINE_NB-1)]=0;
+				fgets(line,255,in_file);
+				strncpy(verins[cnt].line2,line,(DGUT_TLE_LINE_NB-1));
+				verins[cnt].line2[(DGUT_TLE_LINE_NB-1)]=0;
+				str = &line[DGUT_TLE_LINE_NB];
+				sscanf(str,"%lf %lf %lf",&verins[cnt].startmin,&verins[cnt].stopmin,&verins[cnt].stepmin);
+				cnt++;
+			}
+			if (cnt==(DGUT_TLE_MAX_NO-1))
+			{
+				printf("WARNING: readVERINs stopping max number of TLEs reached %d\n",DGUT_TLE_MAX_NO);
+				break;
+			}
 		}
-		if (cnt==(DGUT_TLE_MAX_NO-1))
-		{
-			printf("WARNING: readVERINs stopping max number of TLEs reached %d\n",DGUT_TLE_MAX_NO);
-			break;
-		}
-	}
 
-	if(in_file)
-	{
 		printf("INFO: read %d verins\n",cnt);
 		fclose(in_file);
 		*tleNo=cnt;
@@ -233,6 +230,8 @@ int readVERINs(mediumText_t filename,VERIN *listptr,TLE *tle,uint32_t *tleNo)
 			parseLines(&tle[tIx],verins[tIx].line1,verins[tIx].line2);
 		}
 	}
+
+
 
 	return cnt;
 }
