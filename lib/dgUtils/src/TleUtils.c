@@ -138,7 +138,7 @@ bool_t DGUT_GetSatLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t tleId,uint32_t tim
 	double mins=(nowEpoch*1.0-tleEpoch*1.0)/60.0;
 
 	getRV(&tle,mins,r,v);
-	printf("tleEpoch %ld nowEpoch %ld  mins: %f r: %f %f %f\n",tleEpoch,nowEpoch,mins,r[0],r[1],r[2]);
+	//printf("tleEpoch %ld nowEpoch %ld  mins: %f r: %f %f %f\n",tleEpoch,nowEpoch,mins,r[0],r[1],r[2]);
 
 	double lati,longi,alti;
 	//double rplan;
@@ -153,13 +153,13 @@ bool_t DGUT_GetSatLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t tleId,uint32_t tim
 
 	while (geo.lon < -pi)
 	{
-		printf("geo.lon1 %f\n",geo.lon);
+		//printf("geo.lon1 %f\n",geo.lon);
 		geo.lon += twopi;
 	}
 
 	while (geo.lon > (pi))
 	{
-		printf("geo.lon2 %f\n",geo.lon);
+		//printf("geo.lon2 %f\n",geo.lon);
 		geo.lon -= twopi;
 	}
 
@@ -174,6 +174,11 @@ bool_t DGUT_GetSatLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t tleId,uint32_t tim
 	satLatLon->alt=alti;
 
 	return isError;
+}
+
+void DGUT_GetTleEpoch(uint32_t *epoch,uint32_t tleId)
+{
+	*epoch=tle_g[tleId].epoch/1000;
 }
 
 /* local functions ------------------------------------------------------------*/
