@@ -7,6 +7,7 @@
 /* system includes-------------------------------------------------------------*/
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /* application includes--------------------------------------------------------*/
 #include <StringUtils.h>
@@ -103,6 +104,29 @@ bool_t DGUS_GetStringBetweenChars(char *output,char *input,char find,uint16_t ma
 
 	return isError;
 
+}
+
+bool_t DGUS_GetStringWithNoSpaces(char *output,char *input,uint16_t maxSize)
+{
+	bool_t isError = M_FALSE;
+	uint32_t oIx=0;
+	char c;
+	for (uint32_t bIx=0;bIx<strlen(input);bIx++)
+	{
+		c=input[bIx];
+		if (c!=' ')
+		{
+			output[oIx++]=c;
+			output[oIx]=0;
+		}
+
+		if (oIx>=maxSize-1)
+		{
+			isError = M_TRUE;
+			break;
+		}
+	}
+	return isError;
 }
 
 
