@@ -45,14 +45,18 @@ void DGUH_Init_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,uint16_t s
 {
 	this->samplesNb=0;
 	this->sum=0.0f;
+	this->sumStdDev=0.0f;
 	this->samplesNbMax=samplesNbMax;
 	this->average=0.0f;
+	this->stdDev=0.0f;
 }
 float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,float32_t newSample)
 {
 	this->sum+=newSample;
 	this->samplesNb++;
 	this->average=this->sum/(1.0f*this->samplesNb);
+	this->sumStdDev+=sqrt((newSample-this->average)*(newSample-this->average));
+	this->stdDev=this->sumStdDev/(1.0f*(this->samplesNb));
 	if (this->samplesNb>this->samplesNbMax)
 	{
 		this->samplesNb=this->samplesNbMax;

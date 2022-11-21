@@ -35,6 +35,8 @@ typedef struct _DGUH_Float32MovingAverage_t_
 {
 	float32_t sum;
 	float32_t average;
+	float32_t stdDev;
+	float32_t sumStdDev;
 	uint16_t  samplesNb;
 	uint16_t  samplesNbMax;
 }DGUH_Float32MovingAverage_t;
