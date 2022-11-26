@@ -61,6 +61,32 @@ bool_t DGUF_ReadLine(FILE *fh,char *output,uint16_t *outputLenght, uint16_t maxO
 	return isEndOfFile;
 }
 
+bool_t DGUF_ReadToChar(FILE *fh,char *output,uint16_t *outputLenght, uint16_t maxOutputLength,char toChar)
+{
+	bool_t isEndOfFile=M_FALSE;
+	uint16_t outIx=0;
+
+	char c=0;
+	do
+	{
+		c=getc(fh);
+		if (EOF==c)
+		{
+			isEndOfFile=M_TRUE;
+		}
+		else if (toChar!=c)
+		{
+			output[outIx++]=c;
+		}
+	}while ((c!=EOF)&&(c!='\n')&&(c!=toChar));
+
+	/* wrap-up*/
+	output[outIx]=0;
+	*outputLenght=outIx+1;
+
+	return isEndOfFile;
+}
+
 /* local functions ------------------------------------------------------------*/
 /* none */
 
