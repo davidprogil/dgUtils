@@ -33,7 +33,7 @@ bool_t DGUS_GetStringToChar(char *output,char *input,char find,uint16_t maxSize)
 bool_t DGUS_GetStringAfterChar(char *output,char *input,char find,uint16_t maxSize);
 bool_t DGUS_GetStringBetweenChars(char *output,char *input,char find,uint16_t maxSize);
 bool_t DGUS_GetStringWithNoSpaces(char *output,char *input,uint16_t maxSize);
-
+void DGUS_ReplaceCharacterByString(char *output,char *input,char find,char *replace);
 /* end */
 #endif /* DGUS_StringUtils_H */
 

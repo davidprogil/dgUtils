@@ -61,6 +61,7 @@ float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *thi
 	{
 		this->samplesNb=this->samplesNbMax;
 		this->sum-=this->average;
+		this->sumStdDev-=this->stdDev;
 	}
 	return this->average;
 }

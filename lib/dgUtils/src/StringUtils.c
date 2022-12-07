@@ -129,6 +129,29 @@ bool_t DGUS_GetStringWithNoSpaces(char *output,char *input,uint16_t maxSize)
 	return isError;
 }
 
+void DGUS_ReplaceCharacterByString(char *output,char *input,char find,char *replace)
+{
+	uint32_t replaceNb=strlen(replace);
+	uint32_t inputNb=strlen(input);
+	uint32_t iIx;
+	uint32_t oIx;
+
+	oIx=0;
+	for (iIx=0;iIx<inputNb;iIx++)
+	{
+		if (input[iIx]==find)
+		{
+			strcpy(&output[oIx],replace);
+			oIx+=replaceNb;
+		}
+		else
+		{
+			output[oIx++]=input[iIx];
+		}
+		output[oIx]=0;
+	}
+}
+
 
 /* local functions ------------------------------------------------------------*/
 /* none */
