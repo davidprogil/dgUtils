@@ -34,7 +34,7 @@ bool_t DGUT_GetTleId(uint32_t *tleId,shortText_t catalogId);
 bool_t DGUT_GetSatLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t tleId,uint32_t time);
 bool_t DGUT_GetSunLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t time);
 void DGUT_GetTleEpoch(uint32_t *epoch,uint32_t tleId);
-
+void DGUT_GetTle(uint32_t tleId,char *line1,char *line2);
 
 /* end */
 #endif /* DGUT_GeoUtils_H */

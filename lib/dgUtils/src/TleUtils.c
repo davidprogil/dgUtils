@@ -188,6 +188,12 @@ void DGUT_GetTleEpoch(uint32_t *epoch,uint32_t tleId)
 	*epoch=tle_g[tleId].epoch/1000;
 }
 
+void DGUT_GetTle(uint32_t tleId,char *line1,char *line2)
+{
+	memcpy(line1,tle_g[tleId].line1,sizeof(tle_g[tleId].line1));
+	memcpy(line2,tle_g[tleId].line2,sizeof(tle_g[tleId].line2));
+}
+
 /* local functions ------------------------------------------------------------*/
 int readVERINs(shortText_t filename,VERIN *listptr,TLE *tle,uint32_t *tleNo)
 {
