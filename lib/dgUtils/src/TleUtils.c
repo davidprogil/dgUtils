@@ -18,7 +18,6 @@
 #include <TleUtils.h>
 
 /* local macros ---------------------------------------------------------------*/
-#define DGUT_TLE_MAX_NO (100)
 #define DGUT_TLE_LINE_NB (70)
 #define DGUT_TLE_ID_NB (8)
 
