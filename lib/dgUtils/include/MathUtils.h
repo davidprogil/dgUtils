@@ -45,12 +45,12 @@ typedef struct _DGUH_Float32MovingAverage_t_
 /* none */
 
 /* public functions--------------------------------------------------------------*/
-void DGUH_Init(DGUH_MathUtils_t *this);
-void DGUH_Execute(DGUH_MathUtils_t *this);
+void DGUH_Init(DGUH_MathUtils_t *self);
+void DGUH_Execute(DGUH_MathUtils_t *self);
 
 //DGUH_Float32MovingAverage_t
-void DGUH_Init_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,uint16_t samplesNbMax);
-float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *this,float32_t newSample);
+void DGUH_Init_Float32MovingAverage(DGUH_Float32MovingAverage_t *self,uint16_t samplesNbMax);
+float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *self,float32_t newSample);
 float32_t DGUH_Error(float32_t one,float32_t two);
 float64_t DGUH_Error64(float64_t one,float64_t two);
 float32_t DGUH_sampleNormal(float32_t center,float32_t cov);

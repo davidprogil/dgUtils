@@ -5,13 +5,14 @@
 /*******************************************************************************/
 
 /* system includes-------------------------------------------------------------*/
+#include <stdio.h>
 #include <stdlib.h>
-#include <stdio.h>
-
-/* application includes--------------------------------------------------------*/
-#include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
+
+/* application includes--------------------------------------------------------*/
+/* none */
 
 /* component includes----------------------------------------------------------*/
 #include "TLE.h"
@@ -126,7 +127,43 @@ bool_t DGUT_GetTleId(uint32_t *tleId,shortText_t catalogId)
 
 bool_t DGUT_GetSunLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t time)
 {
-	bool_t isError=M_TRUE;
+	bool_t isError=M_FALSE;
+
+	/* Define temporary variables */
+	struct tm *gtime;
+	time_t now=time;
+
+	/* Convert the system time to GMT (now UTC) */
+	gtime = gmtime(&now);
+
+	satLatLon->lon=180+(gtime->tm_hour*1.0/24.0)*360.0;
+	if (satLatLon->lon>360) satLatLon->lon=360.0-satLatLon->lon;
+	satLatLon->lat=cos(((gtime->tm_yday*1.0-172*1.0)*1.0/365.25)*2*M_PI)*23.4394 ;
+	satLatLon->alt=1.0; //very high
+
+	/*// Calculate the Julian date
+	//float64_t julianDate = 367.0 * (time*1.0/86400.0) - 678658.0;
+	float64_t julianDate = Julian_Date_of_Epoch(time*1.0);
+
+	// Calculate the mean anomaly of the sun
+	float64_t meanAnomaly = 357.52911 + 0.985600267 * julianDate;
+
+	// Calculate the longitude of the sun
+	float64_t sunLongitude = 280.46645 + meanAnomaly + 1.9194602 * sin(meanAnomaly * M_PI / 180.0) + 0.020094 * sin(2 * meanAnomaly * M_PI / 180.0) + 0.000293 * sin(3 * meanAnomaly * M_PI / 180.0);
+
+	// Calculate the ecliptic latitude of the sun
+	float64_t sunEclipticLatitude = 0.000325 * sin(sunLongitude * M_PI / 180.0);
+
+	// Calculate the obliquity of the ecliptic
+	float64_t obliquityOfEcliptic = 23.439291 - 0.0130042 * julianDate / 36525.0;
+
+	// Calculate the latitude of the sun
+	float64_t sunLatitude = sin(sunEclipticLatitude * M_PI / 180.0) * sin(obliquityOfEcliptic * M_PI / 180.0);
+
+	satLatLon->lat=sunLatitude;
+	satLatLon->lon=sunLongitude;
+	satLatLon->alt=1.0;*/
+
 	return isError;
 }
 
