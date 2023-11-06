@@ -57,8 +57,11 @@ float32_t DGUH_sampleNormal(float32_t center,float32_t cov);
 bool_t DGUH_uint16_isOdd(uint16_t input);
 float32_t DGUH_Float32_Min(float32_t one,float32_t two);
 float32_t DGUH_Float32_Max(float32_t one,float32_t two);
+float32_t DGUH_Float32_Interpolate(float32_t max,float32_t min,float32_t factor);
+float64_t DGUH_Float64_Interpolate(float64_t max,float64_t min,float64_t factor);
 int16_t DGUH_Int16_Min(int16_t one,int16_t two);
 int16_t DGUH_Int_Max(int16_t one,int16_t two);
+
 
 /* end */
 #endif /* DGUH_MathUtils_H */

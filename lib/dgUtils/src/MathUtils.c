@@ -100,6 +100,15 @@ float32_t DGUH_Float32_Max(float32_t one,float32_t two)
 	if (one>two) return one;
 		else return two;
 }
+float32_t DGUH_Float32_Interpolate(float32_t max,float32_t min,float32_t factor)
+{
+	return min*(1.0-factor)+max*factor;
+}
+float64_t DGUH_Float64_Interpolate(float64_t max,float64_t min,float64_t factor)
+{
+	return min*(1.0-factor)+max*factor;
+}
+
 int16_t DGUH_Int16_Min(int16_t one,int16_t two)
 {
 	if (one<two) return one;
