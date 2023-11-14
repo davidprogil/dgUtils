@@ -7,8 +7,9 @@
 #define MYTYPES_H
 
 /* system includes-------------------------------------------------------------*/
-#include<stdlib.h>
-
+#include <stdint.h>
+#include <stdlib.h>
+#include <arpa/inet.h>
 /* application includes--------------------------------------------------------*/
 /* none */
 
@@ -19,15 +20,38 @@
 #define M_FALSE (0)
 #define M_TRUE (1)
 
+#define ERROR (-1)
+
+#define IS_LITTLE_ENDIAN (1)
+
 #define DGL_DEG2RAD(x) ((x)*3.1415f/180.0f)
 #define FLOAT32_MIN (-1.175494350e-38)
 #define FLOAT32_MAX (3.40282346e+38)
 /* types------------------------------------------------------------------------*/
+//#ifndef int8_t
+//typedef char int8_t;
+//#endif
+
 typedef int8_t bool_t;
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
-//TODO typedef unsigned long long uint64_t;
+#ifndef __cplusplus
+//#ifndef __GNUC__
+#ifndef uint64_t
+#ifndef _ARPA_INET_H
+typedef unsigned long long uint64_t;
+#endif
+#endif
+#endif
+//typedef __uint64_t uint64_t;
+//#ifndef __uint64_t
+//#define __uint64_t unsigned long long
+//#endif
+//typedef __uint64_t uint64_t;
+//typedef unsigned long long uint64_t;
+//#define uint64_t __uint64_t
+
 
 typedef signed char int8_t;
 typedef signed short int16_t;
