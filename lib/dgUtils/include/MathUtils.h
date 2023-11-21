@@ -28,6 +28,7 @@
 #define DGUH_EARTH_RADIUS (6371000.0)
 #define LIN2DB(x) (10.0*log((x)))
 #define DB2LIN(x) (pow(10.0,(x)/10.0))
+#define DGUH_DISTANCE2HORIZON(h,r) (sqrt((h)*(h)-(r)*(r)))
 
 /* types------------------------------------------------------------------------*/
 typedef struct _DGUH_MathUtils_t_
