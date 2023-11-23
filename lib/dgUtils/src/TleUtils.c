@@ -210,7 +210,7 @@ bool_t DGUT_GetSatLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t tleId,uint32_t tim
 	longi=geo.lon*180.0/pi;
 	alti=geo.alt;
 
-	printf("lati %f longi %f alti %f\n",lati,longi,alti);
+	//printf("lati %f longi %f alti %f\n",lati,longi,alti);
 
 	satLatLon->lat=lati;
 	satLatLon->lon=longi;
@@ -228,6 +228,39 @@ void DGUT_GetTle(uint32_t tleId,char *line1,char *line2)
 {
 	memcpy(line1,tle_g[tleId].line1,sizeof(tle_g[tleId].line1));
 	memcpy(line2,tle_g[tleId].line2,sizeof(tle_g[tleId].line2));
+}
+
+bool_t DGUT_GetTleId4SatCat(uint16_t *tleId,uint32_t satCatId)
+{
+	bool_t isFound=M_FALSE;
+	for (uint16_t tIx=0;tIx<tleNo_g;tIx++)
+	{
+		if (tle_g[tIx].objectNum==satCatId)
+		{
+			isFound=M_TRUE;
+			*tleId=tIx;
+		}
+	}
+	return isFound;
+}
+
+void DGUT_InjestTle(uint32_t satCatId,char *line1,char *line2)
+{
+	TLE tle;
+	parseLines(&tle,line1,line2);
+	uint16_t tleId;
+	//if found, replace
+	if (DGUT_GetTleId4SatCat(&tleId,satCatId))
+	{
+		printf("debug: DGUT_InjestTle found tle %d for satCat %d\n",tleId,satCatId);
+		memcpy(&tle_g[tleId],&tle,sizeof(tle));
+	}
+	else
+	{
+		memcpy(&tle_g[tleNo_g],&tle,sizeof(tle));
+		tleNo_g++;
+	}
+
 }
 
 /* local functions ------------------------------------------------------------*/

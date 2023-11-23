@@ -59,6 +59,7 @@ float32_t DGUH_Recalculate_Float32MovingAverage(DGUH_Float32MovingAverage_t *sel
 float32_t DGUH_Error(float32_t one,float32_t two);
 float64_t DGUH_Error64(float64_t one,float64_t two);
 float32_t DGUH_sampleNormal(float32_t center,float32_t cov);
+float64_t DGUH_sample64();
 bool_t DGUH_uint16_isOdd(uint16_t input);
 float32_t DGUH_Float32_Min(float32_t one,float32_t two);
 float32_t DGUH_Float32_Max(float32_t one,float32_t two);
