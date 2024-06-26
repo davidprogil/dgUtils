@@ -136,8 +136,18 @@ bool_t DGUT_GetSunLatLon(DGUT_SatLatLon_t *satLatLon,uint32_t time)
 	/* Convert the system time to GMT (now UTC) */
 	gtime = gmtime(&now);
 
-	satLatLon->lon=180+(gtime->tm_hour*1.0/24.0)*360.0;
-	if (satLatLon->lon>360) satLatLon->lon=360.0-satLatLon->lon;
+	satLatLon->lon=180.0-(gtime->tm_hour*1.0/24.0+gtime->tm_min*1.0/60.0/24.0+gtime->tm_sec*1.0/60.0/60.0/24.0)*360.0;
+	//satLatLon->lon=180.0-(gtime->tm_sec*1.0/60.0)*360.0;
+
+//	if (satLatLon->lon>360.0)
+//	{
+//		satLatLon->lon=satLatLon->lon-360.0;
+//	}
+//	if (satLatLon->lon>180.0)
+//	{
+//		satLatLon->lon=180.0-satLatLon->lon;
+//	}
+	//printf("debug: DGUT_GetSunLatLon satLatLon->lon: %f gtime->tm_sec:%d\n",satLatLon->lon,gtime->tm_sec);
 	satLatLon->lat=cos(((gtime->tm_yday*1.0-172*1.0)*1.0/365.25)*2*M_PI)*23.4394 ;
 	satLatLon->alt=1.0; //very high
 
